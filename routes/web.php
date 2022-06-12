@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JeuController;
 use App\Http\Controllers\JoueurController;
+use App\Http\Controllers\TestFormController;
 use App\Http\Controllers\TournoiController;
 
 /*
@@ -31,3 +32,6 @@ Route::resource('jeux',JeuController::class);
 Route::resource('joueurs',JoueurController::class);
 
 Route::resource('tournois',TournoiController::class);
+
+Route::get('testformulaire',[TestFormController::class, 'getInfos']);
+Route::post('testformulaire',[TestFormController::class, 'postInfos']);

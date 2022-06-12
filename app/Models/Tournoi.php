@@ -10,6 +10,8 @@ class Tournoi extends Model
 {
     use HasFactory;
 
+    protected $table = 'Tournois';
+
     protected $fillable = [
         'nom',
         'année',
