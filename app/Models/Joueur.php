@@ -32,4 +32,8 @@ class Joueur extends Model
         ->get();
         return $result;
     }
+
+    public function jeu(){
+        return $this->belongsTo(Jeu::class);
+    }
 }

@@ -18,7 +18,7 @@ class CreateTournoisTable extends Migration
             $table->text('nom');
             $table->integer('annee');
             $table->text('cashprize');
-            $table->integer('idJeu');
+            $table->unsignedBigInteger('idJeu');
             $table->timestamps();
         });
     }

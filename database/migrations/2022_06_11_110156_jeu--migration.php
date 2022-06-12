@@ -20,7 +20,7 @@ class JeuMigration extends Migration
             $table->integer('anneeSortie');
             $table->text('cashPrizeTotal');
             $table->integer('nbTournois');
-            $table->integer('idTopPlayer');
+            $table->unsignedBigInteger('idTopPlayer');
             $table->timestamps();
         });
     }

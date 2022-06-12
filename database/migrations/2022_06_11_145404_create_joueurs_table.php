@@ -19,7 +19,7 @@ class CreateJoueursTable extends Migration
             $table->text('prenom');
             $table->integer('nbTournois');
             $table->text('totalCashPrize');
-            $table->integer('idJeu');
+            $table->unsignedBigInteger('idJeu');
             $table->timestamps();
         });
     }
