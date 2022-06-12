@@ -9,28 +9,50 @@
 @endsection
 
 @section('contenu')
-<table class ="table table-bordered table-striped">
-    <thead>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Editeur</th>
-        <th>Année de Sortie</th>
-        <th>Cashprize Total</th>
-        <th>Nombre de Tournois</th>
-        <th>Top Player</th>
-        <th>Cashprize Top Player</th>
-    </thead>
-    @foreach($jeux as $jeu)
-        <tr>
-            <td>{{ $jeu->id }}</td>
-            <td>{{ $jeu->nom }}</td>
-            <td>{{ $jeu->editeur }}</td>
-            <td>{{ $jeu->anneeSortie }}</td>
-            <td>{{ $jeu->cashPrizeTotal }}</td>
-            <td>{{ $jeu->nbTournois }}</td>
-            <td>{{ $jeu->nomJoueur }}</td>
-            <td>{{ $jeu->totalCashPrize }}</td>
-        </tr>
-    @endforeach
-</table>
+
+    @if(session()->has('info'))
+        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-body">
+                <p class="card-text">{{ session('info') }}</p>
+            </div>
+        </div>
+    @endif
+
+    <div class="card">
+        <header class="card-header">
+            <h5 class="card-header-title">Voici les jeux de notre sélection :</h5>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <table class ="table is-hoverable">
+                    <thead>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Cashprize Total</th>
+                        <th>Nombre de Tournois</th>
+                        <th></th>
+                        <th></th>
+                    </thead>
+                    @foreach($jeux as $jeu)
+                        <tr>
+                            <td>{{ $jeu->id }}</td>
+                            <td><strong>{{ $jeu->nom }}</strong></td>
+                            <td>{{ $jeu->cashPrizeTotal }}</td>
+                            <td>{{ $jeu->nbTournois }}</td>
+                            <td><a class="btn btn-primary" href="{{ route('jeux.show', $jeu->id)}}">Consulter</td>
+                            <td>
+                                <form action="{{ route('jeux.destroy', $jeu->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
 @endsection

@@ -9,22 +9,46 @@
 @endsection
 
 @section('contenu')
-<table class ="table table-bordered table-striped">
-    <thead>
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Année</th>
-        <th>Cashprize Total</th>
-        <th>Jeu</th>
-    </thead>
-    @foreach($tournois as $tournoi)
-        <tr>
-            <td>{{ $tournoi->id }}</td>
-            <td>{{ $tournoi->nom }}</td>
-            <td>{{ $tournoi->annee }}</td>
-            <td>{{ $tournoi->cashprize }}</td>
-            <td>{{ $tournoi->nomJeu }}</td>
-        </tr>
-    @endforeach
-</table>
+
+    @if(session()->has('info'))
+        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-body">
+                <p class="card-text">{{ session('info') }}</p>
+            </div>
+        </div>
+    @endif
+
+    <div class="card">
+        <header class="card-header">
+            <h5 class="card-header-title">Voici les tournois de notre sélection :</h5>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <table class ="table is-hoverable">
+                    <thead>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Jeu</th>
+                        <th></th>
+                        <th></th>
+                    </thead>
+                    @foreach($tournois as $tournoi)
+                        <tr>
+                            <td>{{ $tournoi->id }}</td>
+                            <td><strong>{{ $tournoi->nom }}</strong></td>
+                            <td>{{ $tournoi->nomJeu }}</td>
+                            <td><a class="btn btn-primary" href="{{ route('tournois.show', $tournoi->id)}}">Consulter</td>
+                            <td>
+                                <form action="{{ route('tournois.destroy', $tournoi->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection

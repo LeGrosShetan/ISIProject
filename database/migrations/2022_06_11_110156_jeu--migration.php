@@ -32,6 +32,6 @@ class JeuMigration extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Jeu');
+        Schema::dropIfExists('Jeux');
     }
 }

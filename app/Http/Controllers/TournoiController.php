@@ -13,4 +13,15 @@ class TournoiController extends Controller
         $tournois = $tournoi->getAll();
         return view('Tournois', compact('tournois'));
     }
+
+    public function show(int $id){
+        $temp = new Tournoi();
+        $tournoi = $temp->get($id);
+        return view('tournoiDetail', compact('tournoi'));
+    }
+
+    public function destroy(Tournoi $tournoi){
+        $tournoi->delete();
+        return back()->with('info', 'Tournoi supprimé !');
+    }
 }

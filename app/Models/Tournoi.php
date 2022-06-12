@@ -23,4 +23,12 @@ class Tournoi extends Model
         ->get();
         return $result;
     }
+
+    public function get(int $id){
+        $result = DB::table('Tournois')->join('Jeux', 'Tournois.idJeu','=','Jeux.id')
+        ->select('Tournois.id as id','Tournois.nom as nom','annee','cashprize','Jeux.nom as nomJeu')
+        ->where('Tournois.id','=',$id)
+        ->get();
+        return $result;
+    }
 }
