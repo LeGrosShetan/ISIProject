@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\insertJoueurRequest;
 use App\Http\Requests\StoreJoueurRequest;
 use App\Http\Requests\UpdateJoueurRequest;
 use App\Models\Joueur;
@@ -25,5 +26,14 @@ class JoueurController extends Controller
     public function destroy(Joueur $joueur){
         $joueur->delete();
         return back()->with('info', 'Joueur supprimé !');
+    }
+
+    public function create(){
+        return view('createJoueur');
+    }
+
+    public function store(insertJoueurRequest $request){
+        Joueur::create($request->all());
+        return view('confirm');
     }
 }

@@ -30,7 +30,7 @@
                         <th>Nom</th>
                         <th>Jeu</th>
                         <th></th>
-                        <th></th>
+                        <th><a class="btn btn-warning btn-block" href="{{ route('tournois.create') }}">Ajouter</th>
                     </thead>
                     @foreach($tournois as $tournoi)
                         <tr>

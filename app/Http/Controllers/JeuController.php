@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jeu;
+use App\Http\Requests\insertJeuRequest;
 use App\Http\Requests\StoreJeuRequest;
 use App\Http\Requests\UpdateJeuRequest;
 use Illuminate\Support\Facades\URL;
@@ -25,5 +26,14 @@ class JeuController extends Controller
     public function destroy(Jeu $jeu){
         $jeu->delete();
         return back()->with('info', 'Jeu supprimé !');
+    }
+
+    public function create(){
+        return view('createJeu');
+    }
+
+    public function store(insertJeuRequest $request){
+        Jeu::create($request->all());
+        return view('confirm');
     }
 }

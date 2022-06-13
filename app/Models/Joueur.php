@@ -17,7 +17,7 @@ class Joueur extends Model
         'prenom',
         'nbTournois',
         'totalCashPrize',
-        'nomJeu',
+        'idJeu',
     ];
 
     public function getAll(){

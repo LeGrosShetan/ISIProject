@@ -31,7 +31,7 @@
                         <th>Cashprize Total</th>
                         <th>Nombre de Tournois</th>
                         <th></th>
-                        <th></th>
+                        <th><a class="btn btn-warning btn-block" href="{{ route('jeux.create') }}">Ajouter</th>
                     </thead>
                     @foreach($jeux as $jeu)
                         <tr>

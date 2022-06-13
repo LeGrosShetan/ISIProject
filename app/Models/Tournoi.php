@@ -14,9 +14,9 @@ class Tournoi extends Model
 
     protected $fillable = [
         'nom',
-        'année',
+        'annee',
         'cashprize',
-        'nomJeu',
+        'idJeu',
     ];
 
     public function getAll(){

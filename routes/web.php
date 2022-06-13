@@ -17,15 +17,23 @@ use App\Http\Controllers\TournoiController;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('accueil', function () {
+    return view('accueil');
+});
+
+Route::get('apropos', function () {
+    return view('apropos');
+});
+
 Route::get('jeux', [JeuController::class, 'index']);
 
 Route::get('joueurs', [JoueurController::class, 'index']);
 
 Route::get('tournois', [TournoiController::class, 'index']);
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::resource('jeux',JeuController::class);
 
@@ -35,3 +43,13 @@ Route::resource('tournois',TournoiController::class);
 
 Route::get('testformulaire',[TestFormController::class, 'getInfos']);
 Route::post('testformulaire',[TestFormController::class, 'postInfos']);
+
+Route::get('/dashboard', function () {
+    return view('accueil');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

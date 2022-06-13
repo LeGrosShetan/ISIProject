@@ -20,6 +20,7 @@ class Jeu extends Model
         'nbTournois',
         'nomJoueur',
         'totalCashPrize',
+        'idTopPlayer',
     ];
 
     public function getAll(){
