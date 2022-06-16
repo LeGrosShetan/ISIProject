@@ -30,19 +30,16 @@ class Jeu extends Model
         return $result;
     }
 
-    public function get(int $id){
-        $result = DB::table('Jeux')->join('Joueurs','Joueurs.id','=','Jeux.idTopPlayer')
-        ->select('Jeux.id AS id','Jeux.nom as nom','editeur','anneeSortie', 'Jeux.cashPrizeTotal as cashPrizeTotal', 'Jeux.nbTournois as nbTournois', 'Joueurs.nom as nomJoueur', 'totalCashPrize')
-        ->where('Jeux.id','=',$id)
-        ->get();
-        return $result;
-    }
-
     public function joueurs(){
-        return $this->hasMany(Joueur::class);
+        return $this->hasMany(Joueur::class,'idJeu');
     }
 
     public function tournois(){
-        return $this->hasMany(Tournoi::class);
+        return $this->hasMany(Tournoi::class,'idJeu');
     }
+
+    public function topPlayer(){
+        return $this->hasOne(Joueur::class,'id', 'idTopPlayer');
+    }
+
 }

@@ -8,13 +8,13 @@
 
     <div class="card">
         <header class="card-header">
-            <h5 class="card-header-title"><strong>{{ $joueur[0]->prenom }} {{ $joueur[0]->nom }}</strong></h5>
+            <h5 class="card-header-title"><strong>{{ $joueur->prenom }} {{ $joueur->nom }}</strong></h5>
         </header>
         <div class="card-content">
             <div class="content">
-                <p>Nombre de tournois : {{ $joueur[0]->nbTournois }}</p>
-                <p>Cashprize gagné : {{ $joueur[0]->totalCashPrize }}</p>
-                <p>Jeu : {{ $joueur[0]->nomJeu }}</p>
+                <p>Nombre de tournois : {{ $joueur->nbTournois }}</p>
+                <p>Cashprize gagné : {{ $joueur->totalCashPrize }}</p>
+                <p>Jeu : {{ $nomJeu }}</p>
             </div>
         </div>
     </div>

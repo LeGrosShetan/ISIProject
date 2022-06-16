@@ -18,13 +18,13 @@ class JeuController extends Controller
     }
 
     public function show(int $idJeu){
-        $temp = new Jeu();
-        $jeu = $temp->get($idJeu);
-        return view('jeuDetail', compact('jeu'));
+        $jeu = Jeu::find($idJeu);
+        $topPlayer = $jeu->topPlayer;
+        return view('jeuDetail', compact('jeu','topPlayer'));
     }
 
-    public function destroy(Jeu $jeu){
-        $jeu->delete();
+    public function destroy(int $idJeu){
+        Jeu::destroy($idJeu);
         return back()->with('info', 'Jeu supprimé !');
     }
 

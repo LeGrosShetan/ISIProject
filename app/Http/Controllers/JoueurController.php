@@ -18,13 +18,13 @@ class JoueurController extends Controller
     }
 
     public function show(int $id){
-        $temp = new Joueur();
-        $joueur = $temp->get($id);
-        return view('joueurDetail', compact('joueur'));
+        $joueur = Joueur::find($id);
+        $nomJeu = $joueur->jeu->nom;
+        return view('joueurDetail', compact('joueur','nomJeu'));
     }
 
-    public function destroy(Joueur $joueur){
-        $joueur->delete();
+    public function destroy(int $idJoueur){
+        Joueur::destroy($idJoueur);
         return back()->with('info', 'Joueur supprimé !');
     }
 

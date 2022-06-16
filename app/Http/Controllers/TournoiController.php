@@ -6,6 +6,7 @@ use App\Http\Requests\insertTournoiRequest;
 use App\Http\Requests\StoreTournoiRequest;
 use App\Http\Requests\UpdateTournoiRequest;
 use App\Models\Tournoi;
+use DB;
 
 class TournoiController extends Controller
 {
@@ -16,13 +17,13 @@ class TournoiController extends Controller
     }
 
     public function show(int $id){
-        $temp = new Tournoi();
-        $tournoi = $temp->get($id);
-        return view('tournoiDetail', compact('tournoi'));
+        $tournoi = Tournoi::find($id);
+        $nomJeu = $tournoi->jeu->nom;
+        return view('tournoiDetail', compact('tournoi', 'nomJeu'));
     }
 
-    public function destroy(Tournoi $tournoi){
-        $tournoi->delete();
+    public function destroy(int $idTournoi){
+        Tournoi::destroy($idTournoi);
         return back()->with('info', 'Tournoi supprimé !');
     }
 
