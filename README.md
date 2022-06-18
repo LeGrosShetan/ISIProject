@@ -1,3 +1,30 @@
+## Installation du projet
+Suivez ces étapes afin d'installer ce projet
+
+1) Dans votre dossier de sites apache, ouvrez une fenetre de commande, et tapez `git clone https://forge.univ-lyon1.fr/p2110445/ISIProject.git projet`
+
+2) Utilisez la commande pour entrer dans le dossier créé avec la commande `cd projet`
+
+3) Installez composer avec la commande `composer install`
+
+4) Installez NPM avec la commande `npm install`
+
+5) Créez un nouveau fichier .env à partir du fichier .env.exemple avec la commande `cp .env.example .env`
+
+6) Générez une nouvelle clé d'encryptage avec la commande `php artisan key:generate`
+
+7) Créez une base de données vide, avec mariadb par exemple
+optionnel: créez un utilisateur disposant de tous les privilèges sur la base de données créé
+
+8) Dans le fichier .env, remplacez les champs DB_DATABASE, DB_USERNAME et DB_PASSWORD par respectivement le moteur de base de données utilisé, ainsi que les identifiants d'un utilisateur disposant de droits sur la base de données
+
+9) Faites une migration de la base de données avec la commande `php artisan migrate`
+
+10) Executez le script donnees.sql afin de remplir la base de données
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
