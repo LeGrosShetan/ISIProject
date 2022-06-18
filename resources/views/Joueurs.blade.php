@@ -41,7 +41,7 @@
                             <td>{{ $joueur->id }}</td>
                             <td><strong>{{ $joueur->prenom }}</strong></td>
                             <td>{{ $joueur->nom }}</td>
-                            <td>{{ $joueur->nomJeu }}</td>
+                            <td>{{ $joueur->Jeu->nom }}</td>
                             <td><a class="btn btn-primary" href="{{ route('joueurs.show', $joueur->id)}}">Consulter</td>
                             @auth
                                 <td><a class="btn btn-warning" href="{{ route('joueurs.edit', $joueur->id)}}">Modifier</td>

@@ -12,8 +12,7 @@ use Illuminate\Http\Request;
 class JoueurController extends Controller
 {
     public function index(){
-        $joueur = new Joueur();
-        $joueurs = $joueur->getAll();
+        $joueurs = Joueur::all();
         return view('Joueurs', compact('joueurs'));
     }
 

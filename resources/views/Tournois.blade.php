@@ -39,7 +39,7 @@
                         <tr>
                             <td>{{ $tournoi->id }}</td>
                             <td><strong>{{ $tournoi->nom }}</strong></td>
-                            <td>{{ $tournoi->nomJeu }}</td>
+                            <td>{{ $tournoi->Jeu->nom }}</td>
                             <td><a class="btn btn-primary" href="{{ route('tournois.show', $tournoi->id)}}">Consulter</td>
                             @auth
                                 <td><a class="btn btn-warning" href="{{ route('tournois.edit', $tournoi->id)}}">Modifier</td>

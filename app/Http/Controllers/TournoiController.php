@@ -11,8 +11,7 @@ use DB;
 class TournoiController extends Controller
 {
     public function index(){
-        $tournoi = new Tournoi();
-        $tournois = $tournoi->getAll();
+        $tournois = Tournoi::all();
         return view('Tournois', compact('tournois'));
     }
 
