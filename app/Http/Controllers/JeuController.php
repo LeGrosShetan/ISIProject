@@ -41,10 +41,6 @@ class JeuController extends Controller
         return back()->with('info', 'Jeu supprimé !');
     }
 
-    public function deniedDestroy(){
-        return back()->with('info', 'Impossible de supprimer un jeu sans être connecté !');
-    }
-
     public function create(){
         return view('createJeu');
     }
