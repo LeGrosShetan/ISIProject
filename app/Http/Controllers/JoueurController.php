@@ -23,6 +23,17 @@ class JoueurController extends Controller
         return view('joueurDetail', compact('joueur','nomJeu'));
     }
 
+    public function edit(int $idJoueur){
+        $joueur = Joueur::find($idJoueur);
+        return view('editJoueur', compact('joueur'));
+    }
+
+    public function update(insertJoueurRequest $request, int $idJoueur){
+        $joueur = Joueur::find($idJoueur);
+        $joueur->update($request->all());
+        return view('confirm');
+    }
+
     public function destroy(int $idJoueur){
         Joueur::destroy($idJoueur);
         return back()->with('info', 'Joueur supprimé !');

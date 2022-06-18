@@ -20,12 +20,29 @@ class JeuController extends Controller
     public function show(int $idJeu){
         $jeu = Jeu::find($idJeu);
         $topPlayer = $jeu->topPlayer;
-        return view('jeuDetail', compact('jeu','topPlayer'));
+        $joueurs = $jeu->joueurs;
+        $tournois = $jeu->tournois;
+        return view('jeuDetail', compact('jeu','topPlayer','joueurs','tournois'));
+    }
+
+    public function edit(int $idJeu){
+        $jeu = Jeu::find($idJeu);
+        return view('editJeu', compact('jeu'));
+    }
+
+    public function update(insertJeuRequest $request, int $idJeu){
+        $jeu = Jeu::find($idJeu);
+        $jeu->update($request->all());
+        return view('confirm');
     }
 
     public function destroy(int $idJeu){
         Jeu::destroy($idJeu);
         return back()->with('info', 'Jeu supprimé !');
+    }
+
+    public function deniedDestroy(){
+        return back()->with('info', 'Impossible de supprimer un jeu sans être connecté !');
     }
 
     public function create(){

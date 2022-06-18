@@ -22,6 +22,17 @@ class TournoiController extends Controller
         return view('tournoiDetail', compact('tournoi', 'nomJeu'));
     }
 
+    public function edit(int $idTournoi){
+        $tournoi = Tournoi::find($idTournoi);
+        return view('editTournoi', compact('tournoi'));
+    }
+
+    public function update(insertTournoiRequest $request, int $idTournoi){
+        $tournoi = Tournoi::find($idTournoi);
+        $tournoi->update($request->all());
+        return view('confirm');
+    }
+
     public function destroy(int $idTournoi){
         Tournoi::destroy($idTournoi);
         return back()->with('info', 'Tournoi supprimé !');

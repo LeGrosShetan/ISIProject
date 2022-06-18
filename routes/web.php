@@ -18,7 +18,7 @@ use App\Http\Controllers\TournoiController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('accueil');
 });
 
 Route::get('accueil', function () {

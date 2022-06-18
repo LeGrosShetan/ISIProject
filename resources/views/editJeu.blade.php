@@ -4,49 +4,50 @@
 <br>
     <div class="container">
         <div class="row card text-white bg-dark">
-            <h4 class="card-header">Ajouter un jeu</h4>
+            <h4 class="card-header">Modifier un jeu</h4>
             <div class="card-body">
                 @auth
-                    <form action="{{ route('jeux.store') }}" method="POST">
+                    <form action="{{ route('jeux.update', $jeu->id) }}" method="POST">
                         @csrf
+                        @method('put')
                         <br>
                         <div class="form-group">
-                            <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom" id="nom" placeholder="Nom du jeu">
+                            <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom" id="nom" value="{{ $jeu->nom}}" placeholder="Nom du jeu">
                             @error('nom')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <br>
                         <div class="form-group">
-                            <input type="text" class="form-control @error('editeur') is-invalid @enderror" name="editeur" id="editeur" placeholder="Editeur du jeu">
+                            <input type="text" class="form-control @error('editeur') is-invalid @enderror" name="editeur" id="editeur" value="{{ $jeu->editeur}}" placeholder="Editeur du jeu">
                             @error('editeur')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <br>
                         <div class="form-group">
-                            <input type="text" class="form-control @error('anneeSortie') is-invalid @enderror" name="anneeSortie" id="anneSortie" placeholder="Année de sortie du jeu">
+                            <input type="text" class="form-control @error('anneeSortie') is-invalid @enderror" name="anneeSortie" id="anneSortie" value="{{$jeu->anneeSortie}}" placeholder="Année de sortie du jeu">
                             @error('anneeSortie')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <br>
                         <div class="form-group">
-                            <input type="text" class="form-control @error('cashPrizeTotal') is-invalid @enderror" name="cashPrizeTotal" id="cashPrizeTotal" placeholder="Somme des cashprizes des tournois sur ce jeu">
+                            <input type="text" class="form-control @error('cashPrizeTotal') is-invalid @enderror" name="cashPrizeTotal" id="cashPrizeTotal" value="{{$jeu->cashPrizeTotal }}" placeholder="Somme des cashprizes des tournois sur ce jeu">
                             @error('cashPrizeTotal')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <br>
                         <div class="form-group">
-                            <input type="text" class="form-control @error('nbTournois') is-invalid @enderror" name="nbTournois" id="nbTournois" placeholder="Nombre de tournois sur ce jeu">
+                            <input type="text" class="form-control @error('nbTournois') is-invalid @enderror" name="nbTournois" id="nbTournois" value="{{$jeu->nbTournois}}" placeholder="Nombre de tournois sur ce jeu">
                             @error('nbTournois')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <br>
                         <div class="form-group">
-                            <input type="text" class="form-control @error('idTopPlayer') is-invalid @enderror" name="idTopPlayer" id="idTopPlayer" value="0" placeholder="L'id du meilleur joueur">
+                            <input type="text" class="form-control @error('idTopPlayer') is-invalid @enderror" name="idTopPlayer" id="idTopPlayer" value="{{$jeu->idTopPlayer}}" placeholder="L'id du meilleur joueur">
                             @error('idTopPlayer')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -56,8 +57,8 @@
                     </form>
                     @else
                         <div>
-                            <h5 class="card-header">Création impossible !</h5>
-                            <p class="card-body">Vous ne pouvez pas créer d'élément sans être connecté !</p>
+                            <h5 class="card-header">Modification impossible !</h5>
+                            <p class="card-body">Vous ne pouvez pas modifier d'élément sans être connecté !</p>
                         </div>
                     @endauth
             </div>

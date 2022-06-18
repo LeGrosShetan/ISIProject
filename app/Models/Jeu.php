@@ -24,8 +24,8 @@ class Jeu extends Model
     ];
 
     public function getAll(){
-        $result = DB::table('Jeux')->join('Joueurs','Joueurs.id','=','Jeux.idTopPlayer')
-        ->select('Jeux.id AS id','Jeux.nom as nom','editeur','anneeSortie', 'Jeux.cashPrizeTotal as cashPrizeTotal', 'Jeux.nbTournois as nbTournois', 'Joueurs.nom as nomJoueur', 'totalCashPrize')
+        $result = DB::table('Jeux')
+        ->select('Jeux.id AS id','Jeux.nom as nom','editeur','anneeSortie', 'Jeux.cashPrizeTotal as cashPrizeTotal', 'Jeux.nbTournois as nbTournois')
         ->get();
         return $result;
     }
@@ -39,6 +39,31 @@ class Jeu extends Model
     }
 
     public function topPlayer(){
+        if(Joueur::find($this->idTopPlayer) == null){
+            $joueurs = $this->joueurs()->get();
+
+            $max = 0;
+            $indiceMax = 0;
+            $i=0;
+
+            foreach($joueurs as $joueur){
+                $cash = $joueur->totalCashPrize;
+
+                $int = (int) filter_var($cash, FILTER_SANITIZE_NUMBER_INT);
+                
+                error_log($int);
+                
+                if($int > $max){
+                    $max = $int;
+                    $indiceMax = $i;
+                }
+
+                $i++;
+            }
+            if($indiceMax != 0){
+                $this->idTopPlayer = $joueurs[$indiceMax]->id;
+            }
+        }
         return $this->hasOne(Joueur::class,'id', 'idTopPlayer');
     }
 

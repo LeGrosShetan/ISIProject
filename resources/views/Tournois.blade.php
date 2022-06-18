@@ -30,7 +30,10 @@
                         <th>Nom</th>
                         <th>Jeu</th>
                         <th></th>
-                        <th><a class="btn btn-warning btn-block" href="{{ route('tournois.create') }}">Ajouter</th>
+                        @auth
+                            <th></th>
+                            <th><a class="btn btn-success btn-block" href="{{ route('tournois.create') }}">Ajouter</th>
+                        @endauth
                     </thead>
                     @foreach($tournois as $tournoi)
                         <tr>
@@ -38,13 +41,16 @@
                             <td><strong>{{ $tournoi->nom }}</strong></td>
                             <td>{{ $tournoi->nomJeu }}</td>
                             <td><a class="btn btn-primary" href="{{ route('tournois.show', $tournoi->id)}}">Consulter</td>
-                            <td>
-                                <form action="{{ route('tournois.destroy', $tournoi->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Supprimer</button>
-                                </form>
-                            </td>
+                            @auth
+                                <td><a class="btn btn-warning" href="{{ route('tournois.edit', $tournoi->id)}}">Modifier</td>
+                                <td>
+                                    <form action="{{ route('tournois.destroy', $tournoi->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                                    </form>
+                                </td>
+                            @endauth
                         </tr>
                     @endforeach
                 </table>

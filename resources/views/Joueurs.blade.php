@@ -31,7 +31,10 @@
                         <th>Nom</th>
                         <th>Jeu</th>
                         <th></th>
-                        <th><a class="btn btn-warning btn-block" href="{{ route('joueurs.create') }}">Ajouter</th>
+                        @auth
+                            <th></th>
+                            <th><a class="btn btn-success btn-block" href="{{ route('joueurs.create') }}">Ajouter</th>
+                        @endauth
                     </thead>
                     @foreach($joueurs as $joueur)
                         <tr>
@@ -40,13 +43,16 @@
                             <td>{{ $joueur->nom }}</td>
                             <td>{{ $joueur->nomJeu }}</td>
                             <td><a class="btn btn-primary" href="{{ route('joueurs.show', $joueur->id)}}">Consulter</td>
-                            <td>
-                                <form action="{{ route('joueurs.destroy', $joueur->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Supprimer</button>
-                                </form>
-                            </td>
+                            @auth
+                                <td><a class="btn btn-warning" href="{{ route('joueurs.edit', $joueur->id)}}">Modifier</td>
+                                <td>
+                                    <form action="{{ route('joueurs.destroy', $joueur->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                                    </form>
+                                </td>
+                            @endauth
                         </tr>
                     @endforeach
                 </table>

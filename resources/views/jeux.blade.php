@@ -31,7 +31,10 @@
                         <th>Cashprize Total</th>
                         <th>Nombre de Tournois</th>
                         <th></th>
-                        <th><a class="btn btn-warning btn-block" href="{{ route('jeux.create') }}">Ajouter</th>
+                        @auth
+                            <th></th>
+                            <th><a class="btn btn-success btn-block" href="{{ route('jeux.create') }}">Ajouter</th>
+                        @endauth
                     </thead>
                     @foreach($jeux as $jeu)
                         <tr>
@@ -40,13 +43,16 @@
                             <td>{{ $jeu->cashPrizeTotal }}</td>
                             <td>{{ $jeu->nbTournois }}</td>
                             <td><a class="btn btn-primary" href="{{ route('jeux.show', $jeu->id)}}">Consulter</td>
-                            <td>
-                                <form action="{{ route('jeux.destroy', $jeu->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Supprimer</button>
-                                </form>
-                            </td>
+                            @auth
+                                <td><a class="btn btn-warning" href="{{ route('jeux.edit', $jeu->id)}}">Modifier</td>
+                                <td>
+                                    <form action="{{ route('jeux.destroy', $jeu->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit">Supprimer</button>
+                                    </form>
+                                </td>
+                            @endauth
                         </tr>
                     @endforeach
                 </table>
